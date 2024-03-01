@@ -1,0 +1,16 @@
+jax
+jaxlib
+gymnax
+distrax
+evosax
+optax
+flax
+chex
+numpy
+brax
+stim
+pylatexenc
+matplotlib
+itertools
+more_itertools
+scipy
