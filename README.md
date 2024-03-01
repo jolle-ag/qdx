@@ -1,6 +1,6 @@
 # QDX - An AI quantum discovery tool with JAX ⚛️🤖🚀
 
-[![arXiv](https://img.shields.io/badge/arXiv-2311.04750-b31b1b.svg)](https://arxiv.org/abs/2311.04750)
+[![arXiv](https://img.shields.io/badge/arXiv-2311.04750-b31b1b.svg)](https://arxiv.org/abs/2311.04750)  <a href="https://colab.research.google.com/drive/1nU9Xivfms_wXrJmv0F6uFz4_DOWoryhg?usp=sharing" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> 
 
 Code repository for the paper "Simultaneous Discovery of Quantum Error Correction Codes and Encoders with a Noise-Aware Reinforcement Learning Agent" by *Jan Olle, Remmy Zen, Matteo Puviani and Florian Marquardt*.
 
@@ -48,7 +48,7 @@ pip install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-re
 
 We include a [demo](https://github.com/jolle-ag/qdx/notebooks/demo.ipynb) jupyter notebook for two different situations: [[7,1,3]] code discovery in a fixed symmetric depolarizing noise channel and noise-aware [[6,1]] code discovery in a biased noise channel.
 
- <a href="https://colab.research.google.com/drive/1u2iokg1ZBF6YeB6-UuzmbFqAo_3KlCu-" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> 
+ <a href="https://colab.research.google.com/drive/1nU9Xivfms_wXrJmv0F6uFz4_DOWoryhg?usp=sharing" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> 
 
  ## License
 
