@@ -11,6 +11,5 @@ brax
 stim
 pylatexenc
 matplotlib
-itertools
 more_itertools
 scipy
