@@ -1,11 +1,20 @@
-# QDX - An AI quantum discovery tool with JAX ⚛️🤖🚀
+<table>
+  <tr>
+    <td>
+      <img src="images/qdx_logo_wordart.png" alt="overview" width="200"/>
+    </td>
+    <td>
+      <h1>QEC AI-discovery with JAX ⚛️🤖🚀</h1>
+    </td>
+  </tr>
+</table>
+
 
 [![arXiv](https://img.shields.io/badge/arXiv-2311.04750-b31b1b.svg)](https://arxiv.org/abs/2311.04750)  <a href="https://colab.research.google.com/drive/1nU9Xivfms_wXrJmv0F6uFz4_DOWoryhg?usp=sharing" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> 
 
 Code repository for the paper "Simultaneous Discovery of Quantum Error Correction Codes and Encoders with a Noise-Aware Reinforcement Learning Agent" by *Jan Olle, Remmy Zen, Matteo Puviani and Florian Marquardt*.
 
 ## Description
-
 This library can be used to train Reinforcement Learning (RL) agents to codiscover quantum error correction (QEC) codes and their encoding circuits *from scratch, without any additional domain knowledge* except how many errors are not detected given the quantum circuit it has built.
 
 The RL agent can be made *noise-aware*, meaning that it learns to produce encoding strategies simultaneously for a range of noise models, making it applicable in very broad situations. 
