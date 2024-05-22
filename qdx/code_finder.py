@@ -1,5 +1,7 @@
 from qdx.envs.code_discovery import CodeDiscovery
 from qdx.envs.meta_code_discovery import MetaCodeDiscovery
+from qdx.envs.delta_code_discovery import DeltaCodeDiscovery
+from qdx.envs.max_code_discovery import MaxCodeDiscovery
 from qdx.simulators.clifford_gates import CliffordGates
 import os 
 import jax
@@ -60,7 +62,7 @@ class CodeFinder:
         ## For some reason this throws out the error: "'gates' is not defined"
         #gate_set = [eval("gates.%s" % g) for g in self.config["WHICH_GATES"]]
         
-        if not self.config["NOISE_AWARE"]:
+        if self.config["ENV_TYPE"] == "STANDARD":
             self.env = CodeDiscovery(self.config["N"], 
                                      self.config["K"], 
                                      self.config["D"],
@@ -71,8 +73,30 @@ class CodeFinder:
                                      pI = self.config["P_I"], 
                                      softness = self.config["SOFTNESS"])
             
-        elif self.config["NOISE_AWARE"]:
+        elif self.config["ENV_TYPE"] == "NOISE-AWARE":
             self.env = MetaCodeDiscovery(self.config["N"], 
+                                         self.config["K"], 
+                                         self.config["D"],
+                                         gate_set, 
+                                         graph = self.graph, 
+                                         max_steps = self.config["MAX_STEPS"],
+                                         lbda = self.config["LAMBDA"],
+                                         pI = self.config["P_I"], 
+                                         softness = self.config["SOFTNESS"])
+            
+        elif self.config["ENV_TYPE"] == "DELTA":
+            self.env = DeltaCodeDiscovery(self.config["N"], 
+                                         self.config["K"], 
+                                         self.config["D"],
+                                         gate_set, 
+                                         graph = self.graph, 
+                                         max_steps = self.config["MAX_STEPS"],
+                                         lbda = self.config["LAMBDA"],
+                                         pI = self.config["P_I"], 
+                                         softness = self.config["SOFTNESS"])
+            
+        elif self.config["ENV_TYPE"] == "MAX":
+            self.env = MaxCodeDiscovery(self.config["N"], 
                                          self.config["K"], 
                                          self.config["D"],
                                          gate_set, 
@@ -111,7 +135,7 @@ class CodeFinder:
     
     def evaluate(self):
         
-        if not self.config["NOISE_AWARE"]:
+        if self.config["ENV_TYPE"] != "NOISE-AWARE":
 
             data = []
 
@@ -160,7 +184,7 @@ class CodeFinder:
 
                 data.append({'n': self.config["N"], 'k': self.config["K"], 'd': code_distance, 'gates': gates})
                 
-        elif self.config["NOISE_AWARE"]:
+        elif self.config["ENV_TYPE"] == "NOISE-AWARE":
 
             data = self.evaluate_noise_aware()
 
