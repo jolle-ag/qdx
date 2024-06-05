@@ -25,8 +25,13 @@ class CodeFinder:
     def make_graph(self):
 
         if self.config["GRAPH"] == "All-to-All":
-                graph = None
-
+            graph = []
+            # Fully connected
+            for ii in range(self.config["N"]):
+                for jj in range(ii+1, self.config["N"]):
+                    graph.append((ii,jj))
+                    graph.append((jj,ii))
+                    
         elif self.config["GRAPH"] == "NN-1":
             # x - x - x - x - x - x - x
             # with open boundary conditions
@@ -36,14 +41,14 @@ class CodeFinder:
                 graph.append(((ii+1)%self.config["N"],ii))
 
         elif self.config["GRAPH"] == "NN-2":
-            # Next-to-nearest neighbor with periodic boundary conditions
+            # Next-to-nearest neighbor with open boundary conditions
             graph = []
-            for ii in range(self.config["N"]):
-                graph.append((ii,(ii+1)%self.config["N"]))
-                graph.append(((ii+1)%self.config["N"],ii))
-                
-                graph.append((ii,(ii+2)%self.config["N"]))
-                graph.append(((ii+2)%self.config["N"],ii))
+            for ii in range(self.config["N"]-1):
+                graph.append((ii,ii+1))
+                graph.append((ii+1,ii))
+            for ii in range(self.config["N"]-2):
+                graph.append((ii,ii+2))
+                graph.append((ii+2,ii))
                 
         self.graph = graph
         
@@ -179,7 +184,7 @@ class CodeFinder:
                 code_distance = self.compute_distance(gates)
 
 
-                print(f"Agent: {index+1}", end="\r")
+                # print(f"Agent: {index+1}", end="\r")
 
 
                 data.append({'n': self.config["N"], 'k': self.config["K"], 'd': code_distance, 'gates': gates})
@@ -276,7 +281,7 @@ class CodeFinder:
                 data.append({'n': self.config["N"], 'k': self.config["K"], 'cZ': cZ, 'd_eff': code_distance, 'gates': gates})
 
 
-            print(f"Agent: {index+1}", end="\r")
+            # print(f"Agent: {index+1}", end="\r")
             
         return data
 
