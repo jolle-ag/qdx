@@ -1,0 +1,9 @@
+python -u experiments_d4.py 13 1 4 NN-1 0
+python -u experiments_d4.py 13 1 4 NN-2 0
+python -u experiments_d4.py 13 1 4 All-to-All 0
+python -u experiments_d4.py 16 2 4 NN-1 0
+python -u experiments_d4.py 16 2 4 NN-2 0
+python -u experiments_d4.py 16 2 4 All-to-All 0
+python -u experiments_d4.py 20 6 4 NN-1 0
+python -u experiments_d4.py 20 6 4 NN-2 0
+python -u experiments_d4.py 20 6 4 All-to-All 0

@@ -1,0 +1,9 @@
+python experiments_d3.py 7 1 3 NN-1 0
+python experiments_d3.py 7 1 3 NN-2 0
+python experiments_d3.py 7 1 3 All-to-All 0
+python experiments_d3.py 9 1 3 NN-1 0
+python experiments_d3.py 9 1 3 NN-2 0
+python experiments_d3.py 9 1 3 All-to-All 0
+python experiments_d3.py 11 3 3 NN-1 0
+python experiments_d3.py 11 3 3 NN-2 0
+python experiments_d3.py 11 3 3 All-to-All 0

@@ -1,0 +1,9 @@
+python -u experiments_d5.py 19 1 5 NN-1 1
+python -u experiments_d5.py 19 1 5 NN-2 1
+python -u experiments_d5.py 19 1 5 All-to-All 1
+python -u experiments_d5.py 22 2 5 NN-1 1
+python -u experiments_d5.py 22 2 5 NN-2 1
+python -u experiments_d5.py 22 2 5 All-to-All 1
+python -u experiments_d5.py 25 1 5 NN-1 1
+python -u experiments_d5.py 25 1 5 NN-2 1
+python -u experiments_d5.py 25 1 5 All-to-All 1
