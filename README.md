@@ -41,7 +41,7 @@ pip install -r requirements.txt
 
 ### GPU compatibility:
 
-To install [JAX with NVIDIA GPU support](https://jax.readthedocs.io/en/latest/index.html](https://github.com/jax-ml/jax), use:
+To install [JAX with NVIDIA GPU support](https://github.com/jax-ml/jax), use:
 
 ```
 # CUDA 12 installation
