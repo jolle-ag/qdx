@@ -10,7 +10,7 @@
 </table>
 
 
-[![arXiv](https://img.shields.io/badge/arXiv-2311.04750-b31b1b.svg)](https://arxiv.org/abs/2311.04750)  <a href="https://colab.research.google.com/drive/1nU9Xivfms_wXrJmv0F6uFz4_DOWoryhg?usp=sharing" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> 
+[![Paper](https://img.shields.io/badge/npj_qi-10_126_(2024)-b31b1b.svg)](https://www.nature.com/articles/s41534-024-00920-y)  <a href="https://colab.research.google.com/drive/1nU9Xivfms_wXrJmv0F6uFz4_DOWoryhg?usp=sharing" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> 
 
 Code repository for the paper "Simultaneous Discovery of Quantum Error Correction Codes and Encoders with a Noise-Aware Reinforcement Learning Agent" by *Jan Olle, Remmy Zen, Matteo Puviani and Florian Marquardt*.
 
@@ -62,15 +62,15 @@ The code in this repository is released under the MIT License.
 
 ## Citation
 ``` bib
-@article{olle_simultaneous_2023,
+@article{olle_simultaneous_2024,
   title={Simultaneous Discovery of Quantum Error Correction Codes and Encoders with a Noise-Aware Reinforcement Learning Agent},
   author={Olle, Jan and Zen, Remmy and Puviani, Matteo and Marquardt, Florian},
-  url = {http://arxiv.org/abs/2311.04750},
-  journal={arXiv preprint arXiv:2311.04750},
-  urldate = {2024-04-01},
-  publisher = {arXiv},
-  month = nov,
-  year = {2023},
+  url = {https://www.nature.com/articles/s41534-024-00920-y},
+  journal={npj Quantum Information 10, Article number: 126 (2024)},
+  urldate = {2024-12-03},
+  publisher = {npj Quantum Information},
+  month = dec,
+  year = {2024},
   note = {arXiv:2311.04750 [quant-ph]},
 }
 ```
