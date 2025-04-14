@@ -109,7 +109,7 @@ class Utils():
         # return arr * mask
         return arr[mask].reshape(b-a,c)
     
-    def check_KL(self, E_mu, logical_id, tableau=None):
+    def check_KL(self, E_mu, logical_id=list(range(self.n_qubits_logical)), tableau=None):
         # Check the Knill-Laflamme conditions for error correction.
 
         # Extract the stabilizer generators
