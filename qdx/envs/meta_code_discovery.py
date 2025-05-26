@@ -123,9 +123,10 @@ class MetaCodeDiscovery(environment.Environment):
         self.cZ = cZ
         self.pX = pX
         self.pI = pI # Probability of no error
+        noise_params = NoiseParams()
         
         
-        self.pI_id = jnp.where(NoiseParams.pIs == self.pI)[0][0]
+        self.pI_id = jnp.where(noise_params.pIs == self.pI)[0][0]
         
         
         self.graph = graph
@@ -311,7 +312,7 @@ class MetaCodeDiscovery(environment.Environment):
         )
 
     def reset_env(
-        self, key: chex.PRNGKey, params: EnvParams, noise: Optional[NoiseParams] = NoiseParams
+        self, key: chex.PRNGKey, params: EnvParams, noise: Optional[NoiseParams] = NoiseParams()
     ) -> Tuple[chex.Array, EnvState]:
         """Performs resetting of environment."""
         

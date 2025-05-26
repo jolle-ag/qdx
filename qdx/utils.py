@@ -35,6 +35,8 @@ class Utils():
         
         # Generate the stabilizer group structure for stabilizer calculations
         self.generate_S_structure(softness) # This generates self.S_struct
+
+        self.S = self.generate_S(self.tableau[self.n_qubits_physical + self.n_qubits_logical:])
         
         # Symplectic metric Omega
         self.Omega = jnp.kron(jnp.array([[0,1],[1,0]], dtype=jnp.uint8), jnp.eye(self.n_qubits_physical, dtype=jnp.uint8))
@@ -109,48 +111,17 @@ class Utils():
         # return arr * mask
         return arr[mask].reshape(b-a,c)
     
-    def check_KL(self, E_mu, logical_id=list(range(self.n_qubits_logical)), tableau=None):
+    def check_KL(self, E_mu):
         # Check the Knill-Laflamme conditions for error correction.
-
-        # Extract the stabilizer generators
-        if tableau is None:
-            tableau = self.tableau[self.n_qubits_physical:]
-        else:
-            tableau = jnp.array(tableau)
-        # remove_idx = list(combinations(range(self.n_qubits_physical), self.n_qubits_logical))
-        if logical_id is None:
-            KLs = []
-            remove_idx = list(combinations(range(self.n_qubits_physical), self.n_qubits_logical))
-            for row_index in remove_idx:
-                code_tableau = self.remove_rows(tableau, list(row_index))
-
-                # Recompute S with the tableau
-                self.S = self.generate_S(code_tableau)
-                
-                # Determine if errors are in S by calculating the logical XOR between S and error operators, E_mu
-                inS = jax.vmap(jnp.logical_xor, in_axes=(None,0))(self.S, E_mu)
-                inS = jnp.prod(jnp.logical_not(inS), axis=-1)
-                
-                # Calculate the number of Knill-Laflamme conditions that are not satisfied
-                num_KL = len(E_mu) - jnp.sum(jnp.any(((E_mu @ self.Omega) @ code_tableau.T)%2, axis=1), axis=0) - jnp.sum(inS)
-                KLs.append(num_KL)
-            
-            return KLs
-        else:
-            row_index = logical_id
-            code_tableau = self.remove_rows(tableau, list(row_index))
-
-            # Recompute S with the tableau
-            self.S = self.generate_S(code_tableau)
-            
-            # Determine if errors are in S by calculating the logical XOR between S and error operators, E_mu
-            inS = jax.vmap(jnp.logical_xor, in_axes=(None,0))(self.S, E_mu)
-            inS = jnp.prod(jnp.logical_not(inS), axis=-1)
-            
-            # Calculate the number of Knill-Laflamme conditions that are not satisfied
-            num_KL = len(E_mu) - jnp.sum(jnp.any(((E_mu @ self.Omega) @ code_tableau.T)%2, axis=1), axis=0) - jnp.sum(inS)
-            
-            return num_KL # np.min(KLs), np.argmin(KLs)
+        
+        # Determine if errors are in S by calculating the logical XOR between S and error operators, E_mu
+        inS = jax.vmap(jnp.logical_xor, in_axes=(None,0))(self.S, E_mu)
+        inS = jnp.prod(jnp.logical_not(inS), axis=-1)
+        
+        # Calculate the number of Knill-Laflamme conditions that are not satisfied
+        num_KL = len(E_mu) - jnp.sum(jnp.any(((E_mu @ self.Omega) @ self.tableau[self.n_qubits_physical + self.n_qubits_logical:].T)%2, axis=1), axis=0) - jnp.sum(inS)
+        
+        return num_KL # np.min(KLs), np.argmin(KLs)
     
     def check_KL_cZ(self, E_mu, cZ):
         # Check the Knill-Laflamme conditions specifically considering a biased error channel with bias parameter cZ
