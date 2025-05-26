@@ -26,10 +26,10 @@ class EnvState:
     cZ: bias parameter
     p_mu: probabilities of all errors considered
     """
-    tableau: jnp.array
+    tableau: jax.Array
     time: int
     cZ: float
-    p_mu: jnp.array
+    p_mu: jax.Array
 
 @struct.dataclass
 class NoiseParams:
@@ -38,9 +38,10 @@ class NoiseParams:
 
     It's used in reset_env() to update p_mu
     """
-    cZs: jnp.array = jnp.array(np.arange(0.5,2.1,0.1))
-    pIs: jnp.array = jnp.array([0.6, 0.75, 0.9, 0.95, 0.99, 0.999])
-    pXs: jnp.array = jnp.array([[0.0688262, 0.0855959, 0.100139, 0.112763,
+    # This weird way of defining the arrays is a workaround to https://github.com/jax-ml/jax/issues/14295
+    cZs: int = struct.field(default_factory=lambda: jnp.array(np.arange(0.5,2.1,0.1)))
+    pIs: int = struct.field(default_factory=lambda: jnp.array([0.6, 0.75, 0.9, 0.95, 0.99, 0.999]))
+    pXs: int = struct.field(default_factory=lambda: jnp.array([[0.0688262, 0.0855959, 0.100139, 0.112763,
                             0.123748, 0.133333, 0.141718, 0.149065,
                             0.15551, 0.16117, 0.16614, 0.170505,
                             0.174336, 0.177696, 0.18064, 0.183216],
@@ -63,7 +64,7 @@ class NoiseParams:
                    [0.0000961894, 0.000403434, 0.00100751, 0.00180597,
                            0.00262342, 0.00333333, 0.00388495, 0.00428087, 
                            0.00454894, 0.00472277, 0.00483205, 0.00489927, 
-                           0.00493998, 0.00496439, 0.00497894, 0.00498756]])
+                           0.00493998, 0.00496439, 0.00497894, 0.00498756]]))
 
 # UNUSED
 @struct.dataclass
